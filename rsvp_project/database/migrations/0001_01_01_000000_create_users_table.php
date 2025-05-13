@@ -35,6 +35,16 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('guests', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->nullable();
+            $table->string('notelp')->nullable();
+            $table->string('code')->nullable();
+            $table->boolean('attended')->default(false);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -45,5 +55,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('guests');
     }
 };
